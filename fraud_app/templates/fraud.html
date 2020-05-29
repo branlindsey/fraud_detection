@@ -5,24 +5,20 @@
   <title>Event Dashboard</title>
   <meta name="description" content="Event Dashboard">
   <meta name="author" content="Brandon Lindsey">
-  <script src="{{ url_for('static', filename='brython.js')}}"></script>
-  <script src="{{ url_for('static', filename='brython_stdlib.js')}}"></script>
+  
 </head>
-
-<body onload="brython()">
    
     <h1>Upcoming Event Dashboard</h1>
     <p>This app will give the probability that an upcoming event is fraudulent.</p>
-    <p>Click on the button below.</p>
+    
 
     <div>
-        <!-- I feel like we need a query to pull the upcoming events.  And another to pull upcoming fraud events. 
-
-These have id's so that later we can pull out data using js. -->
-        <span>Correct:</span> <input id="a"></input>
-        <span>Time Taken:</span> <input id="b"></input>
-        <span>Attempts:</span> <input id="c"></input>
-        <span>Days Since Last Activity:</span> <input id="d"></input>
+        
+        <table style="width:80%" border="4" id=table>
+        {% for table in tables %}
+    
+        {% endfor %}
+        </table>
     </div>
 
     <div>
@@ -41,16 +37,6 @@ These have id's so that later we can pull out data using js. -->
 from browser import document, ajax
 import json
 
-def get_x_vals():
-    a = document['a'].value
-    b = document['b'].value
-    c = document['c'].value
-    d = document['d'].value
-    
-    return {'a': float(a),
-            'b': float(b),
-            'c': float(c),
-            'd': float(d)}
 
 def display_solutions(req):
     result = json.loads(req.text)
