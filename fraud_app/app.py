@@ -1,6 +1,6 @@
 
 import pandas as pd
-import psycopg2 as pg 
+import psycopg2 as pg2
 from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
@@ -32,4 +32,13 @@ def _return_prediction(a, b, c, d):
 '''    
 
 if __name__ == '__main__':
+    #Load the trained model
+    with open('src.model.pkl', 'rb') as f:
+        model = pickle.load(f)
+        
+    #Connect to postgres    
+    conn = pg2.connect(dbname='', user='postgres', host='localhost', port='5432')
+    cur = conn.cursor()
+    
+    
     app.run(host='0.0.0.0', port=8000, debug=True)
