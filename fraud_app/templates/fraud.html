@@ -1,0 +1,60 @@
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Event Dashboard</title>
+  <meta name="description" content="Event Dashboard">
+  <meta name="author" content="Brandon Lindsey">
+  
+</head>
+   
+    <h1>Upcoming Event Dashboard</h1>
+    <p>This app will give the probability that an upcoming event is fraudulent.</p>
+    
+
+    <div>
+        
+        <table style="width:80%" border="4" id=table>
+        {{tables|safe}}
+        </table>
+    </div>
+
+    <div>
+        <button type="button" id="solve">Update!</button>
+    </div>
+
+    
+    
+
+
+<script type="text/python">
+
+from browser import document, ajax
+import json
+
+
+def display_solutions(req):
+    result = json.loads(req.text)
+    document['solution'].html = f"{result['prediction']}"
+
+
+def send_x_vals_json(vals):
+    req = ajax.Ajax()
+    req.bind('complete', display_solutions)
+    req.open('POST',
+                '/solve',
+                True)
+    req.set_header('Content-Type', 'application/json')
+    req.send(json.dumps(vals))
+
+def click(event):
+    vals  = get_x_vals()
+    send_x_vals_json(vals)
+
+document['solve'].bind('click', click)
+
+</script>
+
+</body>
+</html>
