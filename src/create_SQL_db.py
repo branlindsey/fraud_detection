@@ -19,7 +19,7 @@ query = """CREATE TABLE fraud_predictions (
                         has_analytics INT, 
                         has_logo INT, 
                         listed CHAR(1),
-                        name CHAR(50),
+                        name CHAR(100),
                         name_length INT, 
                         num_order INT, 
                         num_payouts INT,
