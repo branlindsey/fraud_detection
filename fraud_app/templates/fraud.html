@@ -15,9 +15,7 @@
     <div>
         
         <table style="width:80%" border="4" id=table>
-        {% for table in tables %}
-    
-        {% endfor %}
+        {{tables|safe}}
         </table>
     </div>
 
@@ -25,10 +23,7 @@
         <button type="button" id="solve">Update!</button>
     </div>
 
-    <div>
-        <!-- The span has an id so that later we can fill in the solution
-             using js. -->
-        <p> There is  <span id="solution"></span> % chance that this student will be there next month. </p>
+    
     
 
 

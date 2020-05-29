@@ -1,18 +1,20 @@
+
 import pandas as pd
 import psycopg2 as pg 
 from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
-
+'''
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('fraud.html', tables)
+    return render_template('fraud.html')
+'''
 
-@app.route("/table")
+@app.route("/")
 def show_table():
     data = pd.DataFrame({'a': 1, 'b': 2, 'c': 3}, index=['Time', 'Space', "Everything"])
-table = data.to_html()
-    return render_template('fraud.html', tables =table)
+    table = data.to_html()
+    return render_template('fraud.html', tables=table)
 '''
 @app.route('/solve', methods=['POST'])
 def solve():
